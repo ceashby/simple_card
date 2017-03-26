@@ -1,6 +1,4 @@
 from __future__ import unicode_literals, absolute_import, division
-
-from __future__ import unicode_literals, absolute_import, division
 import datetime as dt
 from pytz import UTC
 
