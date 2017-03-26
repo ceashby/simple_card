@@ -2,7 +2,7 @@
 
 The server is online at http://138.68.176.243/
 
-##Example api usage
+## Example api usage
 curl 127.0.0.1:8000/api/create_card/    -d '{"card_number":1234}'
 curl 127.0.0.1:8000/api/load/           -d '{"card_number": 1234, "amount":100}'
 
