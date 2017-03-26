@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{#    <link rel="stylesheet" href={% static "css/bootstrap.min.css" %}/>#}
+    <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'/>
+    <meta charset="UTF-8">
+    <title>Simple Card</title>
+</head>
+<body>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-6 col-sm-offset-3'>
+                <div class="panel panel-default" style='margin-top: 100px'>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Card: {{ card_number }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Balance remaining: {{ balance }}</p>
+                        <p>Balance available: {{ available }}</p>
+                    </div>
+                </div>
+                <h3 style='margin-top: 50px'>Transactions</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td>{{ transaction.datetime }}</td>
+                                <td>{{ transaction.captured_amount }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
