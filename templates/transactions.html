@@ -15,10 +15,32 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Card: {{ card_number }}</h3>
                     </div>
-                    <div class="panel-body">
-                        <p>Balance remaining: {{ balance }}</p>
-                        <p>Balance available: {{ available }}</p>
-                    </div>
+{#                    <div class="panel-body">#}
+                        <table class="table panel-body">
+                            <tbody>
+                                <tr>
+                                    <td>Amount loaded:</td>
+                                    <td>£{{ loaded }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount remaining:</td>
+                                    <td>£{{ balance }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount available:</td>
+                                    <td>£{{ available }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount blocked:</td>
+                                    <td>£{{ blocked }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+{#                        <p>Amount loaded: £{{ loaded }}</p>#}
+{#                        <p>Amount remaining: £{{ balance }}</p>#}
+{#                        <p>Amount available: £{{ available }}</p>#}
+{#                        <p>Amount blocked: £{{ blocked }}</p>#}
+{#                    </div>#}
                 </div>
                 <h3 style='margin-top: 50px'>Transactions</h3>
                 <table class="table">

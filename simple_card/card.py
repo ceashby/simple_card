@@ -66,6 +66,11 @@ class Card(object):
         # This assumes amounts requested but not captured are considered unavailable
         return -sum(r['requested_amount'] for r in self.transactions)
 
+    def get_amount_blocked(self):
+        return self.get_balance() - self.get_amount_available()
+
+    def get_amount_loaded(self):
+        return -sum(r['requested_amount'] for r in self.transactions if r['requested_amount'] < 0)
 
 class CardError(Exception):
     pass

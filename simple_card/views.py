@@ -14,6 +14,8 @@ def transactions(request):
         'transactions': [t for t in card.transactions if t['captured_amount']],
         'available': card.get_amount_available(),
         'balance': card.get_balance(),
+        'blocked': card.get_amount_blocked(),
+        'loaded': card.get_amount_loaded(),
         'card_number': card_number
     })
 
