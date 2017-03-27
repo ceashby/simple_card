@@ -83,3 +83,11 @@ def capture(card, transaction_id, amount):
 @card_request
 def refund(card, transaction_id, amount):
     return card.refund(transaction_id, amount)
+
+@card_request
+def get_blocked_balance(card):
+    return card.get_amount_blocked()
+
+@card_request
+def get_available(card):
+    return card.get_amount_available()

@@ -17,7 +17,8 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from simple_card.views import home, transactions
-from simple_card.api_views import save_card, load, create_card, authorise, reverse, refund, capture
+from simple_card.api_views import save_card, load, create_card, authorise, reverse, refund, capture, get_blocked_balance, \
+    get_available
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,5 +30,7 @@ urlpatterns = [
     url(r'^api/reverse/', reverse),
     url(r'^api/capture/', capture),
     url(r'^api/refund/', refund),
+    url(r'^api/get_blocked_balance/', get_blocked_balance),
+    url(r'^api/get_available/', get_available),
     url(r'^$', home),
 ]
