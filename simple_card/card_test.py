@@ -10,6 +10,11 @@ def pre_loaded_card():
     return card
 
 class CardTests(TestCase):
+    def testCaptureNegative(self):
+        card = pre_loaded_card()
+        with self.assertRaises(CardError):
+            card.authorise(-10)
+
     def testAuthoriseTooMuch(self):
         card = pre_loaded_card()
         with self.assertRaises(CardError):

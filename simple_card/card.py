@@ -15,7 +15,13 @@ class Card(object):
         except IndexError:
             raise CardError('Unrecognised transaction id')
 
+    def check_amount_is_positive(self, amount):
+        if amount <= 0:
+            raise CardError('Amount must be greater than zero')
+
     def load(self, amount):
+        self.check_amount_is_positive(amount)
+
         self.transactions.append({
             'datetime': dt.datetime.now(UTC),
             'requested_amount': -amount,
@@ -23,6 +29,7 @@ class Card(object):
         })
 
     def authorise(self, amount):
+        self.check_amount_is_positive(amount)
         if amount > self.get_amount_available():
             raise CardError('There is not enough available on the card')
 
@@ -34,6 +41,7 @@ class Card(object):
         return len(self.transactions) - 1
 
     def reverse(self, transaction_id, amount):
+        self.check_amount_is_positive(amount)
         transaction = self.transactions[transaction_id]
 
         if amount > transaction['requested_amount'] - transaction['captured_amount']:
@@ -42,6 +50,7 @@ class Card(object):
         transaction['requested_amount'] -= amount
 
     def capture(self, transaction_id, amount):
+        self.check_amount_is_positive(amount)
         transaction = self.transactions[transaction_id]
 
         if amount > transaction['requested_amount'] - transaction['captured_amount']:
@@ -50,6 +59,7 @@ class Card(object):
         transaction['captured_amount'] += amount
 
     def refund(self, transaction_id, amount):
+        self.check_amount_is_positive(amount)
         transaction = self.transactions[transaction_id]
 
         if amount > transaction['captured_amount']:
