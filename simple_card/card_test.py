@@ -10,10 +10,28 @@ def pre_loaded_card():
     return card
 
 class CardTests(TestCase):
-    def testCaptureNegative(self):
+    def testLoadNegative(self):
+        card = Card('1')
+        with self.assertRaises(CardError):
+            card.load(-10)
+
+    def testAuthoriseNegative(self):
         card = pre_loaded_card()
         with self.assertRaises(CardError):
             card.authorise(-10)
+
+    def testCaptureNegative(self):
+        card = pre_loaded_card()
+        transaction_id = card.authorise(10)
+        with self.assertRaises(CardError):
+            card.capture(transaction_id, -10)
+
+    def testRefundNegative(self):
+        card = pre_loaded_card()
+        transaction_id = card.authorise(10)
+        card.capture(transaction_id, 10)
+        with self.assertRaises(CardError):
+            card.refund(transaction_id, -10)
 
     def testAuthoriseTooMuch(self):
         card = pre_loaded_card()

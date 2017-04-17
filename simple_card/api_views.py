@@ -10,6 +10,9 @@ from simple_card.card import Card
 
 '''
 Example api usage
+# curl 138.68.176.243/api/load/    -d '{"card_number":1111}'
+
+
 curl 127.0.0.1:8000/api/create_card/    -d '{"card_number":1234}'
 curl 127.0.0.1:8000/api/load/           -d '{"card_number": 1234, "amount":100}'
 
